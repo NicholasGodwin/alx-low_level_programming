@@ -1,23 +1,25 @@
+#include "main.h"
+
 /**
- * _strpbrk - searches a string for any of a set of bytes
- * @s: pointer to string to search through
- * @accept: array of bytes to search for
- * Return: pointer to the byte in s that matches one of the bytes in accept
- * or return NULL if no bytes are found.
+ * _strspn - gets the length of a prefix substring
+ * @s: segment to compare bytes from
+ * @accept: string of bytes to compare with
+ * Return: number of bytes in segment s which consist of bytes from accept
  */
 
-char *_strpbrk(char *s, char *accept)
+unsigned int _strspn(char *s, char *accept)
 {
-	unsigned int i;
+	unsigned int i, j;
 
-	while (*s != '\0')
+	i = 0;
+	while (s[i] != '\0')
 	{
-		for (i = 0; accept[i] != '\0'; i++)
-		{
-			if (*s == accept[i])
-				return (s);
-		}
-		s++;
+		j = 0;
+		while (accept[j] != '\0' && s[i] != accept[j])
+			j++;
+		if (accept[j] == '\0')
+			return (i);
+		i++;
 	}
-	return (0);
+	return (i);
 }
